@@ -5,27 +5,56 @@ import {
   StyleSheet,
   Text
 } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeScreen  from './screens/HomeScreen';
+import CreateScreen from './screens/CreateScreen';
+import AboutScreen from './screens/AboutScreen';
+import BrowseScreen from './screens/BrowseScreen';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 function App() {
+  const Tab = createBottomTabNavigator();
+
   return (
-    <SafeAreaView>
-        <Text>Hello World1</Text> 
-        <Text>Hello World2</Text> 
-        <Text>Hello World3</Text> 
-        <Text>Hello World4</Text> 
-        <Text>Hello World5</Text> 
-        <Text>Hello World6</Text> 
-        <Text>Hello World7</Text> 
-        <Text>Hello World8</Text> 
-        <Text>Hello World9</Text> 
-        <Text>Hello World10</Text> 
-        <Text>Hello World11</Text> 
-        <Text>Hello World12</Text> 
-        <Text>Hello World13</Text> 
-        <Text>Hello World14</Text> 
-        <Text>Hello World15</Text> 
-        <Text>Hello World16</Text> 
-    </SafeAreaView>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} 
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="home-search" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen name="Create" component={CreateScreen} 
+          options={{
+            title: 'Create Product',
+            tabBarLabel: 'Create',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="plus-circle" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen name="Browse" component={BrowseScreen} 
+          options={{
+            tabBarLabel: 'Browse',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="file-table" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen name="About" component={AboutScreen} 
+          options={{
+            tabBarLabel: 'About',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="account-box" color={color} size={size} />
+            ),
+          }}
+        />
+
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 

@@ -19,20 +19,21 @@ function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} 
-          options={{
-            tabBarLabel: 'Home',
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="home-search" color={color} size={size} />
-            ),
-          }}
-        />
+
         <Tab.Screen name="Create" component={CreateScreen} 
           options={{
             title: 'Create Product',
             tabBarLabel: 'Create',
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="plus-circle" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen name="Home" component={HomeScreen} 
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="home-search" color={color} size={size} />
             ),
           }}
         />

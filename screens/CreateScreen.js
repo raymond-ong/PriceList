@@ -9,6 +9,8 @@ import {
   TextInput
 } from 'react-native';
 import { useForm, Controller } from "react-hook-form";
+import SupplierDropdown from '../components/SupplierDropdown';
+import SupplierDropdown2 from '../components/SupplierDropdown2';
 
 function CreateScreen() {
     const { control, handleSubmit, formState: { errors } } = useForm({
@@ -38,7 +40,7 @@ function CreateScreen() {
                 style = {styles.textField}
             />
             )}
-            name="productName"
+            name="productName" // will be used during onSubmit
         />
             {errors.firstName && <Text style={styles.fieldError}>*This is required</Text>}
         </View>
@@ -63,7 +65,27 @@ function CreateScreen() {
         />
       </View>
 
-      {/* [C] Submit Button */}
+      {/* [C] Supplier*/}
+      <View style={styles.fieldContainer}>
+        <Text style={styles.fieldLabel}>Supplier:</Text>
+        <Controller
+            control={control}
+            rules={{
+            maxLength: 100,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+                //<SupplierDropdown/>
+                <SupplierDropdown2 
+                    onChange={onChange}
+                    value={value}
+                    onBlur={onBlur}
+                />
+            )}
+            name="supplier"
+        />
+      </View>      
+
+      {/* [D] Submit Button */}
       <TouchableHighlight title="Submit" onPress={handleSubmit(onSubmit)}  style = {styles.submitBtnContainer}>
         <View>
             <Text style = {styles.submitBtnText}>
@@ -87,9 +109,11 @@ const styles = StyleSheet.create({
     },
     textField: {
         borderWidth : 1,
-        borderColor: 'blue',
+        //borderColor: 'blue',
+        borderColor: '#c5cacf',
         borderRadius: 5,        
-        fontSize: 18
+        fontSize: 18,
+        backgroundColor: "#f5faff"
     },
     // TODO: Change the border color onblur/onactive
     textFieldActive: {
@@ -102,12 +126,13 @@ const styles = StyleSheet.create({
         marginTop: 10,
         backgroundColor: "blue",
         borderRadius: 5,
-        padding: 10,        
+        padding: 8,                
     },
     submitBtnText: {
         fontWeight: 'bold',
         textAlign: "center",
-        color: 'white'
+        color: 'white',
+        fontSize: 18,
     },
     fieldError: {
         color: 'red',
